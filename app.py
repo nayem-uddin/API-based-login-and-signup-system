@@ -5,12 +5,13 @@ from flask_cors import CORS
 
 
 connection = pymysql.connect(
-  host='127.0.0.1',
-  user='nayemuddin',
-  port=3306,
-  password='NayemUddin2000',
-  database='users',
-  cursorclass=pymysql.cursors.DictCursor)
+  cursorclass=pymysql.cursors.DictCursor,
+  db="defaultdb",
+  host="nayemuddin-mnubpial-project-1.h.aivencloud.com",
+  password="AVNS_sftvfHF-LZN1CKvPJT1",
+  port=18706,
+  user="avnadmin",
+)
 
 
 cursor=connection.cursor()
@@ -44,10 +45,10 @@ class users(Resource):
   @marshal_with(field_serializer)
   def post(self):
     data=request.json
-    cursor.execute('select * from user_info where email=%s or username=%s',(data['email'],data['username']))
+    cursor.execute('select * from api_users where email=%s or username=%s',(data['email'],data['username']))
     if cursor.fetchone():
       abort(409,message='Data already exists')
-    cursor.execute('insert into user_info '
+    cursor.execute('insert into api_users '
     '(fullname,date_of_birth,gender,phone,address,email,username,pass) '
     'values(%s,%s,%s,%s,%s,%s,%s,%s)',
     (data['fullname'],data['date_of_birth'],data['gender'],data['phone'],data['address'],data['email'],data['username'],data['pass'],))
@@ -64,7 +65,7 @@ class users(Resource):
 class user(Resource):
   @marshal_with(field_serializer)
   def post(self,user_mail):
-    cursor.execute('select * from user_info where email=%s',(user_mail,))
+    cursor.execute('select * from api_users where email=%s',(user_mail,))
     res=cursor.fetchone()
     if not res:
       abort(404,message="Data doesn't exist")
@@ -76,11 +77,11 @@ class user(Resource):
     if len(data)>1:
       abort(400,message='Only one field allowed')
     elif 'email' in data:
-      cursor.execute('update user_info set email=%s where email=%s',(data['email'],user_mail,))
+      cursor.execute('update api_users set email=%s where email=%s',(data['email'],user_mail,))
     elif 'fullname' in data:
-      cursor.execute('update user_info set fullname=%s where email=%s',(data['fullname'],user_mail,))
+      cursor.execute('update api_users set fullname=%s where email=%s',(data['fullname'],user_mail,))
     elif 'pass' in data:
-      cursor.execute('update user_info set pass=%s where email=%s',(data['pass'],user_mail,))
+      cursor.execute('update api_users set pass=%s where email=%s',(data['pass'],user_mail,))
     connection.commit()
     # cursor.execute('select * from user_info where email=%s',(user_mail,))
     # return cursor.fetchone()
@@ -91,7 +92,7 @@ class user(Resource):
     if len(data)<3:
       abort(400,message='All fields required')
     cursor.execute(
-      'update user_table '
+      'update api_users '
       'set email=%s,fullname=%s,pass=%s '
       'where id=%s',(data['email'],data['fullname'],data['pass'],user_mail,)
     )
@@ -101,10 +102,10 @@ class user(Resource):
 
   @marshal_with(field_serializer)
   def delete(self,user_mail):
-    cursor.execute("select id from user_info where email=%s",(user_mail,))
+    cursor.execute("select id from api_users where email=%s",(user_mail,))
     user_id=cursor.fetchone()
-    cursor.execute("delete from user_info where email=%s",(user_mail,))
-    cursor.execute("update user_info set id=id-1 where id>%s",(user_id,))
+    cursor.execute("delete from api_users where email=%s",(user_mail,))
+    cursor.execute("update api_users set id=id-1 where id>%s",(user_id,))
     connection.commit()
 
 
