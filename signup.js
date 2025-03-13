@@ -1,4 +1,5 @@
 const body = document.body.querySelector("#sign-up-form");
+var msg=body.querySelector('#msg');
 body.querySelector("#sign-up").addEventListener("click", (event) => {
   axios({
     url: "https://api-5elw.onrender.com/users",
@@ -21,7 +22,8 @@ body.querySelector("#sign-up").addEventListener("click", (event) => {
     })
     .catch((err) => {
       event.preventDefault();
-      console.log(err);
+      var txt = document.createTextNode('Account already exist');
+      msg.appendChild(txt);
     });
 });
 
