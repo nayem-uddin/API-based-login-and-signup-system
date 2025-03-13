@@ -45,7 +45,9 @@ document.querySelector("#Logout").addEventListener("click", () => {
 
 document.querySelector("#delete").addEventListener("click", () => {
   axios({
-    url: `http://127.0.0.1:5000/users/${sessionStorage.getItem("email")}`,
+    url: `https://api-based-login-and-signup-system.onrender.com/users/${sessionStorage.getItem(
+      "email"
+    )}`,
     method: "DELETE",
   })
     .then(() => {
