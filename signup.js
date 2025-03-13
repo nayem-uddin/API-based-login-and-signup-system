@@ -1,7 +1,7 @@
 const body = document.body.querySelector("#sign-up-form");
 body.querySelector("#sign-up").addEventListener("click", (event) => {
   axios({
-    url: "https://api-based-login-and-signup-system.onrender.com/users",
+    url: "https://api-5elw.onrender.com/users",
     method: "POST",
     data: {
       fullname: document.querySelector("#name").value,
