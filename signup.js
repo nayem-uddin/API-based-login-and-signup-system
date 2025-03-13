@@ -24,6 +24,7 @@ body.querySelector("#sign-up").addEventListener("click", (event) => {
       event.preventDefault();
       var txt = document.createTextNode('Account already exist');
       msg.appendChild(txt);
+      setTimeout(() => (msg.innerHTML = ""), 1500);
     });
 });
 
