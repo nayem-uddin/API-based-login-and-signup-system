@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- axios cdn -->
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.7.8/axios.min.js"
+      integrity="sha512-v8+bPcpk4Sj7CKB11+gK/FnsbgQ15jTwZamnBf/xDmiQDcgOIYufBo6Acu1y30vrk8gg5su4x0CG3zfPaq5Fcg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <title>Log-in</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <form>
+      <fieldset id="login">
+        <h4 id="message">Use your account information to <br />log-in.</h4>
+        <p class="mail">
+          <label for="email">Email:</label> <br />
+          <input type="email" name="email" id="email" class="text-box" />
+        </p>
+        <p class="pass">
+          <label for="password">Password:</label> <br />
+          <input
+            type="password"
+            name="password"
+            id="password"
+            class="text-box"
+          />
+        </p>
+        <input type="checkbox" onclick="show()" />Show password
+        <p id="msg"></p>
+        <input type="button" id="sign-in" value="Login" />
+        <p id="user-sign-up">
+          New user?
+          <a href="sign-up.html">Sign-up</a>
+        </p>
+      </fieldset>
+    </form>
+    <script src="index.js"></script>
+  </body>
+</html>

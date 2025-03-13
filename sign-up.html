@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.7.8/axios.min.js"
+      integrity="sha512-v8+bPcpk4Sj7CKB11+gK/FnsbgQ15jTwZamnBf/xDmiQDcgOIYufBo6Acu1y30vrk8gg5su4x0CG3zfPaq5Fcg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <title>Sign-up</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <form id="sign-up-form">
+      <fieldset id="personal-info">
+        <legend>Personal Information</legend>
+        <p>
+          <label for="name">Name:</label>
+          <input type="text" name="name" id="name" required />
+        </p>
+        <p>
+          <label for="date-of-birth">Date of birth:</label> &nbsp;
+          <input
+            type="date"
+            name="date-of-birth"
+            id="date-of-birth"
+            style="padding: 1px"
+            required
+          />
+        </p>
+        <p>
+          <label for="gender">Gender:</label> &nbsp;
+          <select name="gender" id="gender" style="padding: 1px" required>
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+          </select>
+        </p>
+        <p>
+          <label for="phone">Phone no.:</label>
+          <select name="phone" id="country-code" required>
+            <option value="+880">+880 (BD)</option>
+            <option value="+91">+91 (IND)</option>
+          </select>
+          <input type="number" name="number" id="phone" required />
+        </p>
+        <p>
+          <label for="address">Present address:</label><br />
+          <textarea
+            name="address"
+            id="address"
+            cols="30"
+            rows="5"
+            required
+          ></textarea>
+        </p>
+      </fieldset>
+      <fieldset id="account-info">
+        <legend>Account Information</legend>
+        <p>
+          <label for="username">Username:</label>
+          <input
+            type="text"
+            name="username"
+            id="username"
+            pattern="\w+"
+            placeholder="A unique username"
+            required
+          />
+        </p>
+        <p>
+          <label for="email">Email:</label>
+          <input type="email" name="email" id="email" required />
+        </p>
+        <p>
+          <label for="password">Password:</label>
+          <input type="password" name="password" id="password" required />
+          <input type="checkbox" onclick="show()" />Show
+        </p>
+      </fieldset>
+      <input type="button" value="Sign-up" id="sign-up" /><br />
+
+      <p id="sign-in-redirect">
+        Already have an account? <a href="index.html">Sign-in</a>
+      </p>
+      <p id="msg"></p>
+    </form>
+    <script src="signup.js"></script>
+  </body>
+</html>
